@@ -2,8 +2,33 @@ require 'spec_helper'
 
 module Spree
   describe Shipment do
-    let!(:order) { FactoryGirl.create(:order_with_line_items, :line_items_count => 1) }
     let!(:shipment) { order.shipments.first }
+    let!(:order) do
+      FactoryGirl.create(:order_with_line_items, line_items_count: 1, ship_address: to)
+    end
+
+    let(:to) do
+      Spree::Address.create(
+        firstname: 'Newt',
+        lastname: 'Scamander',
+        address1: '200 19th St',
+        city: 'Birmingham',
+        state: FactoryGirl.create(:state),
+        country: FactoryGirl.create(:country),
+        zipcode: 35203,
+        phone: '123456789'
+       )
+    end
+
+    before do
+      shipment.stock_location.update(
+        address1: '2630 Cahaba Rd',
+        city: 'Birmingham',
+        state: Spree::State.first,
+        country: Spree::Country.first,
+        zipcode: 35223,
+       )
+    end
 
     it "'buys' a shipping rate after transitioning to ship" do
       shipment.refresh_rates
