@@ -4,7 +4,9 @@ module Spree
   describe Shipment do
     let!(:shipment) { order.shipments.first }
     let!(:order) do
-      FactoryGirl.create(:order_with_line_items, line_items_count: 1, ship_address: to)
+      create(:order_with_line_items, line_items_count: 1, ship_address: to) do |order|
+        order.variants.each { |v| v.update! weight: 10 }
+      end
     end
 
     let(:to) do

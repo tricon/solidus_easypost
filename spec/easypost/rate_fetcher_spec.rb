@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe 'Spree::Stock::Estimator customizations' do
-  let!(:order) { create(:order_with_line_items, :line_items_count => 1) }
+  let!(:order) do
+    create(:order_with_line_items, line_items_count: 1) do |order|
+      order.variants.each { |v| v.update! weight: 10 }
+    end
+  end
+
   it "can get rates from easy post" do
     order.refresh_shipment_rates
     rates = order.shipments.first.shipping_rates
