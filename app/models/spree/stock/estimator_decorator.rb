@@ -11,10 +11,11 @@ Spree::Stock::Estimator.class_eval do
     if rates.any?
       rates.each do |rate|
         package.shipping_rates << Spree::ShippingRate.new(
-          :name => "#{rate.carrier} #{rate.service}",
-          :cost => rate.rate,
-          :easy_post_shipment_id => rate.shipment_id,
-          :easy_post_rate_id => rate.id
+          name: "#{ rate.carrier } #{ rate.service }",
+          cost: rate.rate,
+          easy_post_shipment_id: rate.shipment_id,
+          easy_post_rate_id: rate.id,
+          shipping_method: find_or_create_shipping_method(rate)
         )
       end
 
@@ -28,6 +29,24 @@ Spree::Stock::Estimator.class_eval do
   end
 
   private
+
+  # Cartons require shipping methods to be present, This will lookup a
+  # Shipping method based on the admin(internal)_name. This is not user facing
+  # and should not be changed in the admin.
+  def find_or_create_shipping_method(rate)
+    method_name = "#{ rate.carrier } #{ rate.service }"
+
+    unless shipping_method = Spree::ShippingMethod.find_by(admin_name: method_name)
+      Spree::ShippingMethod.new(
+        name: method_name,
+        admin_name: method_name,
+        display_on: :back_end,
+        code: rate.service,
+        calculator: Spree::ShippingCalculator.first,
+        shipping_categories: [Spree::ShippingCategory.first]
+      )
+    end
+  end
 
   def process_address(address)
     ep_address_attrs = {}
@@ -65,5 +84,4 @@ Spree::Stock::Estimator.class_eval do
       :parcel => parcel
     )
   end
-
 end
