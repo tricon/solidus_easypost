@@ -1,5 +1,9 @@
 Spree::Shipment.class_eval do
-  state_machine.before_transition :to => :shipped, :do => :buy_easypost_rate
+  state_machine.before_transition(
+    to: :shipped,
+    do: :buy_easypost_rate,
+    if: -> { Spree::EasyPost::CONFIGS[:purchase_labels?] }
+  )
 
   def tracking_url
     nil # TODO: Work out how to properly generate this
