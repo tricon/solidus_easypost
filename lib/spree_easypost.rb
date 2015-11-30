@@ -2,6 +2,7 @@ require 'spree_core'
 
 module Spree
   module EasyPost
+    CONFIGS = { purchase_labels?: true }
   end
 end
 
