@@ -37,7 +37,7 @@ Spree::Stock::Estimator.class_eval do
     method_name = "#{ rate.carrier } #{ rate.service }"
 
     unless shipping_method = Spree::ShippingMethod.find_by(admin_name: method_name)
-      Spree::ShippingMethod.new(
+      Spree::ShippingMethod.create(
         name: method_name,
         admin_name: method_name,
         display_on: :back_end,
