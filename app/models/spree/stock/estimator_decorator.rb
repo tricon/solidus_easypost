@@ -35,9 +35,10 @@ Spree::Stock::Estimator.class_eval do
   # and should not be changed in the admin.
   def find_or_create_shipping_method(rate)
     method_name = "#{ rate.carrier } #{ rate.service }"
+    shipping_method = Spree::ShippingMethod.find_or_initialize_by(admin_name: method_name)
 
-    unless shipping_method = Spree::ShippingMethod.find_by(admin_name: method_name)
-      Spree::ShippingMethod.create(
+    unless shipping_method.persisted?
+      shipping_method.update(
         name: method_name,
         admin_name: method_name,
         display_on: :back_end,
@@ -46,6 +47,8 @@ Spree::Stock::Estimator.class_eval do
         shipping_categories: [Spree::ShippingCategory.first]
       )
     end
+
+    shipping_method
   end
 
   def build_parcel(package)
