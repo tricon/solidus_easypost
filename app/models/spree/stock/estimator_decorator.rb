@@ -42,7 +42,7 @@ Spree::Stock::Estimator.class_eval do
         admin_name: method_name,
         display_on: :back_end,
         code: rate.service,
-        calculator: Spree::Calculator::Shipping::FlatRate.create(description: ''),
+        calculator: Spree::Calculator::Shipping::FlatRate.create,
         shipping_categories: [Spree::ShippingCategory.first]
       )
     end
