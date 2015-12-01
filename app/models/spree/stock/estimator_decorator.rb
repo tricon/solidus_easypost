@@ -10,17 +10,21 @@ Spree::Stock::Estimator.class_eval do
 
     if rates.any?
       rates.each do |rate|
-        package.shipping_rates << Spree::ShippingRate.new(
+        spree_rate = Spree::ShippingRate.new(
           name: "#{ rate.carrier } #{ rate.service }",
           cost: rate.rate,
           easy_post_shipment_id: rate.shipment_id,
           easy_post_rate_id: rate.id,
           shipping_method: find_or_create_shipping_method(rate)
         )
+
+        package.shipping_rates << spree_rate if spree_rate.shipping_method.frontend?
       end
 
       # Sets cheapest rate to be selected by default
-      package.shipping_rates.first.selected = true
+      if package.shipping_rates.any?
+        package.shipping_rates.min_by(&:cost).selected = true
+      end
 
       package.shipping_rates
     else
