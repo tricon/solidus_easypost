@@ -49,12 +49,4 @@ Spree::Stock::Estimator.class_eval do
 
     shipping_method
   end
-
-  def build_shipment(from_address, to_address, parcel)
-    shipment = ::EasyPost::Shipment.create(
-      :to_address => to_address,
-      :from_address => from_address,
-      :parcel => parcel
-    )
-  end
 end
