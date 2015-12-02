@@ -23,6 +23,7 @@ module Spree
     end
 
     before do
+      create_shipping_methods
       shipment.stock_location.update(
         address1: '2630 Cahaba Rd',
         city: 'Birmingham',
