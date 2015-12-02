@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::Stock::Package do
+describe Spree::Stock::Package, :vcr do
   let(:package) { create(:shipment).to_package }
 
   describe '#easypost_parcel' do

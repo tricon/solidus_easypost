@@ -1,7 +1,7 @@
 require 'pry'
 require 'spec_helper'
 
-RSpec.describe Spree::Stock::Estimator do
+RSpec.describe Spree::Stock::Estimator, :vcr do
   let(:estimator) { described_class.new shipment.order }
   let!(:shipment) { create :shipment }
   let(:package) { shipment.to_package }

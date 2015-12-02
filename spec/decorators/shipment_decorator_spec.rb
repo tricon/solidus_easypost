@@ -1,7 +1,7 @@
 require 'pry'
 require 'spec_helper'
 
-RSpec.describe Spree::Shipment do
+RSpec.describe Spree::Shipment, :vcr do
   let(:shipment) do
     create :shipment do |shipment|
       shipment.update address: create(:address)
