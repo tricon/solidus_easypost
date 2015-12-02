@@ -1,11 +1,6 @@
 Spree::Stock::Estimator.class_eval do
   def shipping_rates(package)
-    order = package.order
-
-    from_address = package.stock_location.easypost_address
-    to_address = order.ship_address.easypost_address
-    parcel = build_parcel(package)
-    shipment = build_shipment(from_address, to_address, parcel)
+    shipment = package.easypost_shipment
     rates = shipment.rates.sort_by { |r| r.rate.to_i }
 
     if rates.any?
@@ -53,16 +48,6 @@ Spree::Stock::Estimator.class_eval do
     end
 
     shipping_method
-  end
-
-  def build_parcel(package)
-    total_weight = package.contents.sum do |item|
-      item.quantity * item.variant.weight
-    end
-
-    parcel = ::EasyPost::Parcel.create(
-      :weight => total_weight
-    )
   end
 
   def build_shipment(from_address, to_address, parcel)
