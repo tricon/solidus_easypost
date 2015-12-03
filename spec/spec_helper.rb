@@ -18,6 +18,8 @@ require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
+require 'vcr'
+require 'webmock/rspec'
 
 EasyPost.api_key = 'CvzYtuda6KRI9JjG7SAHbA'
 
@@ -34,6 +36,14 @@ require 'spree/testing_support/url_helpers'
 # Requires factories defined in lib/spree_easypost/factories.rb
 require 'spree_easypost/factories'
 
+require 'helpers/shipping_method_helpers'
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/cassettes'
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+end
+
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
@@ -44,6 +54,7 @@ RSpec.configure do |config|
   # visit spree.admin_path
   # current_path.should eql(spree.products_path)
   config.include Spree::TestingSupport::UrlHelpers
+  config.include ShippingMethodHelpers
 
   # == Mock Framework
   #

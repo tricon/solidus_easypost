@@ -1,7 +1,8 @@
+require 'pry'
 require 'spec_helper'
 
 module Spree
-  describe Shipment do
+  describe Shipment, :vcr do
     let!(:shipment) { order.shipments.first }
     let!(:order) do
       create(:order_with_line_items, line_items_count: 1, ship_address: to) do |order|
@@ -23,6 +24,7 @@ module Spree
     end
 
     before do
+      create_shipping_methods
       shipment.stock_location.update(
         address1: '2630 Cahaba Rd',
         city: 'Birmingham',

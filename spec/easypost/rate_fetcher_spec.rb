@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Spree::Stock::Estimator customizations' do
+describe 'Spree::Stock::Estimator customizations', :vcr do
   let!(:order) do
     create(:order_with_line_items, line_items_count: 1) do |order|
       order.variants.each { |v| v.update! weight: 10 }

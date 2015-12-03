@@ -1,5 +1,9 @@
-Spree::ShippingRate.class_eval do
-  def name
-    read_attribute(:name)
+module Spree
+  module ShippingRateDecorator
+    def name
+      read_attribute(:name)
+    end
   end
 end
+
+Spree::ShippingRate.prepend Spree::ShippingRateDecorator

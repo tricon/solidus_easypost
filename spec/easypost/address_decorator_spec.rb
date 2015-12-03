@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Spree::Address do
+RSpec.describe Spree::Address, :vcr do
   let(:address) { create :address }
 
   describe '#easypost_address' do
