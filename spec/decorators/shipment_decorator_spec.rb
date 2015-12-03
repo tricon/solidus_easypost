@@ -8,7 +8,7 @@ RSpec.describe Spree::Shipment, :vcr do
     end
   end
 
-  describe '#tracking_ur' do
+  describe '#tracking_url' do
     it 'needs to be implemented'
   end
 
