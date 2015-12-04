@@ -8,10 +8,6 @@ module Spree
       )
     end
 
-    def tracking_url
-      nil # TODO: Work out how to properly generate this
-    end
-
     def easypost_shipment
       if selected_easy_post_shipment_id
         @ep_shipment ||= ::EasyPost::Shipment.retrieve(selected_easy_post_shipment_id)
