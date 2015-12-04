@@ -8,10 +8,6 @@ RSpec.describe Spree::Shipment, :vcr do
     end
   end
 
-  describe '#tracking_url' do
-    it 'needs to be implemented'
-  end
-
   describe '#easypost_shipment' do
     subject { shipment.easypost_shipment }
 
