@@ -35,6 +35,7 @@ require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/spree_easypost/factories.rb
 require 'spree_easypost/factories'
+require 'factories/spree_modification'
 
 require 'helpers/shipping_method_helpers'
 
