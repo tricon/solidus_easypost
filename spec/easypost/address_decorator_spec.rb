@@ -9,14 +9,16 @@ RSpec.describe Spree::Address, :vcr do
     it { is_expected.to be_a EasyPost::Address }
 
     it do
+      # combination of original address factory from easy post
+      # and the spree_modification factories
       is_expected.to have_attributes(
         name: 'John Doe',
         company: 'Company',
-        street1: '10 Lovely Street',
+        street1: '215 N 7th Ave',
         street2: 'Northwest',
-        city: 'Herndon',
-        state: 'AL',
-        zip: '35005',
+        city: 'Manville',
+        state: 'NJ',
+        zip: '08835',
         country: 'US',
         phone: '5555550199'
       )
