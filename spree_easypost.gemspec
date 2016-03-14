@@ -1,15 +1,15 @@
 # encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_easypost'
+  s.name        = 'solidus_easypost'
   s.version     = '1.0.0'
-  s.summary     = 'Easy post integration for spree'
-  s.description = 'Easy post integration for spree'
+  s.summary     = 'Easy post integration for Solidus'
+  s.description = 'Easy post integration for Solidus'
   s.required_ruby_version = '>= 1.9.3'
 
   s.author    = 'Brendan Deere'
   s.email     = 'brendan@stembolt.com'
-  s.homepage  = 'http://www.stembolt.com'
+  s.homepage  = 'https://github.com/solidusio-contrib/solidus_easypost'
 
   #s.files       = `git ls-files`.split("\n")
   #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
