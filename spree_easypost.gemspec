@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_easypost'
-  s.version     = '2.2.1'
+  s.version     = '1.0.0'
   s.summary     = 'Easy post integration for spree'
   s.description = 'Easy post integration for spree'
   s.required_ruby_version = '>= 1.9.3'
