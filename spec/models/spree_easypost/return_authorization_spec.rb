@@ -1,4 +1,3 @@
-require 'pry'
 require 'spec_helper'
 
 RSpec.describe Spree::EasyPost::ReturnAuthorization, :vcr do

@@ -1,4 +1,5 @@
 # Run Coverage report
+require 'pry'
 require 'simplecov'
 SimpleCov.start do
   add_filter 'spec/dummy'
