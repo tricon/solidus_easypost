@@ -2,9 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Spree::Shipment, :vcr do
   let(:shipment) do
-    create :shipment do |shipment|
-      shipment.update address: create(:address)
-    end
+    create :shipment
   end
 
   describe '#easypost_shipment' do
