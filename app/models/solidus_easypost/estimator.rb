@@ -39,7 +39,7 @@ module SolidusEasypost
       method_name = "#{ rate.carrier } #{ rate.service }"
       Spree::ShippingMethod.find_or_create_by(admin_name: method_name) do |r|
         r.name = method_name
-        r.display_on = :back_end
+        r.display_on = 'back_end'
         r.code = rate.service
         r.calculator = Spree::Calculator::Shipping::FlatRate.create
         r.shipping_categories = [Spree::ShippingCategory.first]
