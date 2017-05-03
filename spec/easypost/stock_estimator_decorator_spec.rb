@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Spree::Stock::Estimator, :vcr do
-  if Spree.solidus_gem_version < Gem::Version.new("1.3")
+  if SolidusSupport.solidus_gem_version < Gem::Version.new("1.3")
     let(:estimator) { described_class.new(shipment.order) }
   else
     let(:estimator) { described_class.new }
