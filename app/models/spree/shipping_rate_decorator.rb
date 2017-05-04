@@ -1,7 +1,7 @@
 module Spree
   module ShippingRateDecorator
     def name
-      read_attribute(:name)
+      read_attribute(:name) || super
     end
   end
 end

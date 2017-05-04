@@ -28,7 +28,7 @@ module Spree
 
     def build_easypost_shipment
       ::EasyPost::Shipment.create(
-        to_address: address.easypost_address,
+        to_address: order.ship_address.easypost_address,
         from_address: stock_location.easypost_address,
         parcel: to_package.easypost_parcel
       )

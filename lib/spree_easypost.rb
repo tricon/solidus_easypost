@@ -1,4 +1,5 @@
-require 'spree_core'
+require 'solidus_support'
+require 'solidus_core'
 
 module Spree
   module EasyPost
