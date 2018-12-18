@@ -12,6 +12,12 @@ else
   gem "rails", '~> 4.2.0' # hack for broken bundler dependency resolution
 end
 
+if branch < 'v2.5'
+  gem 'factory_bot', '4.10.0'
+else
+  gem 'factory_bot', '> 4.10.0'
+end
+
 gem 'pg'
 gem 'mysql2'
 
