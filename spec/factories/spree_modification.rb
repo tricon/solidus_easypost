@@ -1,4 +1,4 @@
-FactoryGirl.modify do
+FactoryBot.modify do
   factory :shipping_method do
     admin_name 'Stuff'
     display_on 'front_end'
