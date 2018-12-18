@@ -16,7 +16,7 @@ module SolidusEasypost
             shipping_method: find_or_create_shipping_method(rate)
           )
 
-          shipping_rates << spree_rate if spree_rate.shipping_method.frontend?
+          shipping_rates << spree_rate if spree_rate.shipping_method.available_to_users?
         end
 
         # Sets cheapest rate to be selected by default
@@ -39,7 +39,7 @@ module SolidusEasypost
       method_name = "#{ rate.carrier } #{ rate.service }"
       Spree::ShippingMethod.find_or_create_by(admin_name: method_name) do |r|
         r.name = method_name
-        r.display_on = 'back_end'
+        r.available_to_users = false
         r.code = rate.service
         r.calculator = Spree::Calculator::Shipping::FlatRate.create
         r.shipping_categories = [Spree::ShippingCategory.first]

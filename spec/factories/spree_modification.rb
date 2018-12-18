@@ -1,7 +1,7 @@
 FactoryBot.modify do
   factory :shipping_method do
     admin_name 'Stuff'
-    display_on 'front_end'
+    available_to_users true
   end
 
   factory :stock_location do

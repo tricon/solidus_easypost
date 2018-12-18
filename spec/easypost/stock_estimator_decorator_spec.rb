@@ -37,7 +37,7 @@ RSpec.describe Spree::Stock::Estimator, :vcr do
         end
 
         context 'shipping methods are not front end visible' do
-          before { Spree::ShippingMethod.all.each{|x| x.update!(display_on: 'back_end') } }
+          before { Spree::ShippingMethod.find_each { |x| x.update!(available_to_users: false) } }
           it { is_expected.to be_empty }
         end
       end
