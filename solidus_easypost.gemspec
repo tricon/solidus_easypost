@@ -19,11 +19,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'solidus', ['>= 1.1', '< 3.x']
   s.add_dependency 'solidus_support', '>= 0.1.1'
   s.add_dependency 'easypost'
+  s.add_dependency "deface", '~> 1.0'
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'factory_girl', '~> 4.4'
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'sass-rails'

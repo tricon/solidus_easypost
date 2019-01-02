@@ -2,25 +2,25 @@ module ShippingMethodHelpers
   FIXTURE_PARAMS = [
     {
       name:       "USPS First",
-      display_on: :both,
+      available_to_users: true,
       admin_name: "USPS First",
       code:       "First"
     },
     {
       name:       "USPS Priority",
-      display_on: :both,
+      available_to_users: true,
       admin_name: "USPS Priority",
       code:       "Priority"
     },
     {
       name:       "USPS ParcelSelect",
-      display_on: :both,
+      available_to_users: true,
       admin_name: "USPS ParcelSelect",
       code:       "ParcelSelect"
     },
     {
       name:       "USPS Express",
-      display_on: :both,
+      available_to_users: true,
       admin_name: "USPS Express",
       code:       "Express"
     }
