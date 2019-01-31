@@ -30,7 +30,7 @@ The extension also adds a callback to the "ship" event on the `Shipment` model, 
 
 ```ruby
   # config/initializers/easy_post.rb
-  Spree::EasyPost::configs[:purchase_labels?] = false
+  Solidus::EasyPost::configs[:purchase_labels?] = false
 ```
 
 This gem will create shipping methods for each type of carrier/service for which it receives a rate from the EasyPost API. These are set to  `display_on: back_end` by default and must be set to `front_end`
@@ -39,4 +39,3 @@ or `both` before the rate will be visible on the delivery page of the checkout.
 ## Issues
 
 Please let me know if you find any issues in [the usual places](https://github.com/solidusio-contrib/solidus_easypost/issues), with [the usual information](https://github.com/solidusio/solidus/blob/master/CONTRIBUTING.md).
-

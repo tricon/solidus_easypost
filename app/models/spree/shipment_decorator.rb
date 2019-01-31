@@ -4,7 +4,7 @@ module Spree
       mod.state_machine.before_transition(
         to: :shipped,
         do: :buy_easypost_rate,
-        if: -> { Spree::EasyPost::CONFIGS[:purchase_labels?] }
+        if: -> { Solidus::EasyPost::CONFIGS[:purchase_labels?] }
       )
     end
 
