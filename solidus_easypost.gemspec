@@ -1,8 +1,12 @@
 # encoding: UTF-8
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+
+require 'solidus_easypost/version'
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_easypost'
-  s.version     = '1.0.5'
+  s.version     = Solidus::EasyPost::VERSION
   s.summary     = 'Easy post integration for Solidus'
   s.description = 'Easy post integration for Solidus'
   s.required_ruby_version = '>= 2.1.0'
