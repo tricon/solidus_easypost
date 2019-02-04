@@ -7,16 +7,16 @@ end
 
 FactoryBot.modify do
   factory :address do
-    lastname "Doe"
+    lastname { 'Doe' }
   end
 
   factory :variant do
-    weight 10.0
+    weight { 10.0 }
   end
 
   factory :shipment do
     transient do
-      inventory_units 1
+      inventory_units { 1 }
     end
 
     after(:create) do |shipment, e|
