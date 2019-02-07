@@ -24,6 +24,8 @@ require 'webmock/rspec'
 
 EasyPost.api_key = 'CvzYtuda6KRI9JjG7SAHbA'
 
+FactoryBot.use_parent_strategy = false
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
