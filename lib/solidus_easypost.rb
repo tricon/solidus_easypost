@@ -1,11 +1,11 @@
 require 'solidus_support'
 require 'solidus_core'
 
-module Spree
+module Solidus
   module EasyPost
     CONFIGS = { purchase_labels?: true }
   end
 end
 
 require 'easypost'
-require 'spree_easypost/engine'
+require 'solidus_easypost/engine'
