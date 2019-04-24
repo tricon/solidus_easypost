@@ -37,8 +37,8 @@ module Spree
     end
 
     def buy_easypost_rate
-      rate = easypost_shipment.rates.find do |rate|
-        rate.id == selected_easy_post_rate_id
+      rate = easypost_shipment.rates.find do |sr|
+        sr.id == selected_easy_post_rate_id
       end
 
       easypost_shipment.buy(rate)

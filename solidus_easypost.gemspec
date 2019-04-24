@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version     = Solidus::EasyPost::VERSION
   s.summary     = 'Easy post integration for Solidus'
   s.description = 'Easy post integration for Solidus'
-  s.required_ruby_version = '>= 2.1.0'
+  s.required_ruby_version = '>= 2.2'
 
   s.author    = 'Brendan Deere'
   s.email     = 'brendan@stembolt.com'
