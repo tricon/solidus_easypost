@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ShippingMethodHelpers
   FIXTURE_PARAMS = [
     {
@@ -29,10 +31,8 @@ module ShippingMethodHelpers
   def create_shipping_methods
     shipping_category = create :shipping_category
     FIXTURE_PARAMS.each do |params|
-      params.merge!(
-        calculator: Spree::Calculator::Shipping::FlatRate.new,
-        shipping_categories: [shipping_category]
-      )
+      params[:calculator] = Spree::Calculator::Shipping::FlatRate.new
+      params[:shipping_categories] = [shipping_category]
       Spree::ShippingMethod.create! params
     end
   end

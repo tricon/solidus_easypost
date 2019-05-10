@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Solidus
   module EasyPost
     class Engine < Rails::Engine
@@ -20,7 +22,7 @@ module Solidus
         end
       end
 
-      config.to_prepare &method(:activate).to_proc
+      config.to_prepare(&method(:activate).to_proc)
     end
   end
 end

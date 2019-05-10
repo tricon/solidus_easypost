@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module SolidusEasypost
   class Estimator
-    def shipping_rates(package, frontend_only = true)
+    def shipping_rates(package, _frontend_only = true)
       shipment = package.easypost_shipment
       rates = shipment.rates.sort_by { |r| r.rate.to_i }
 
@@ -9,7 +11,7 @@ module SolidusEasypost
       if rates.any?
         rates.each do |rate|
           spree_rate = Spree::ShippingRate.new(
-            name: "#{ rate.carrier } #{ rate.service }",
+            name: "#{rate.carrier} #{rate.service}",
             cost: rate.rate,
             easy_post_shipment_id: rate.shipment_id,
             easy_post_rate_id: rate.id,
@@ -36,7 +38,7 @@ module SolidusEasypost
     # Shipping method based on the admin(internal)_name. This is not user facing
     # and should not be changed in the admin.
     def find_or_create_shipping_method(rate)
-      method_name = "#{ rate.carrier } #{ rate.service }"
+      method_name = "#{rate.carrier} #{rate.service}"
       Spree::ShippingMethod.find_or_create_by(admin_name: method_name) do |r|
         r.name = method_name
         r.available_to_users = false
