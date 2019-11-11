@@ -15,7 +15,7 @@ RSpec.describe Spree::Address, :vcr do
     it 'has the correct attributes' do
       # combination of original address factory from easy post
       # and the spree_modification factories
-      is_expected.to have_attributes(
+      expect(subject).to have_attributes(
         name: 'John Doe',
         company: 'Company',
         street1: '215 N 7th Ave',

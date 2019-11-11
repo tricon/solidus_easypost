@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'sass-rails'
+  s.add_development_dependency 'solidus_extension_dev_tools'
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'webmock'
-  s.add_development_dependency 'solidus_extension_dev_tools'
 end
