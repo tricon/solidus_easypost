@@ -3,30 +3,30 @@
 module ShippingMethodHelpers
   FIXTURE_PARAMS = [
     {
-      name:       "USPS First",
+      name: "USPS First",
       available_to_users: true,
       admin_name: "USPS First",
-      code:       "First"
+      code: "First"
     },
     {
-      name:       "USPS Priority",
+      name: "USPS Priority",
       available_to_users: true,
       admin_name: "USPS Priority",
-      code:       "Priority"
+      code: "Priority"
     },
     {
-      name:       "USPS ParcelSelect",
+      name: "USPS ParcelSelect",
       available_to_users: true,
       admin_name: "USPS ParcelSelect",
-      code:       "ParcelSelect"
+      code: "ParcelSelect"
     },
     {
-      name:       "USPS Express",
+      name: "USPS Express",
       available_to_users: true,
       admin_name: "USPS Express",
-      code:       "Express"
+      code: "Express"
     }
-  ]
+  ].freeze
 
   def create_shipping_methods
     shipping_category = create :shipping_category
@@ -36,4 +36,8 @@ module ShippingMethodHelpers
       Spree::ShippingMethod.create! params
     end
   end
+end
+
+RSpec.configure do |config|
+  config.include ShippingMethodHelpers
 end

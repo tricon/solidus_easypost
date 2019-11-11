@@ -5,7 +5,7 @@ require 'solidus_core'
 
 module Solidus
   module EasyPost
-    CONFIGS = { purchase_labels?: true }
+    CONFIGS = { purchase_labels?: true }.freeze
   end
 end
 

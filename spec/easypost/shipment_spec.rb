@@ -19,7 +19,7 @@ module Spree
         city: 'Birmingham',
         state: Spree::State.first || create(:state),
         country: Spree::Country.first || create(:country),
-        zipcode: 35203,
+        zipcode: 35_203,
         phone: '123456789'
       )
     end
@@ -31,8 +31,8 @@ module Spree
         city: 'Birmingham',
         state: Spree::State.first,
         country: Spree::Country.first,
-        zipcode: 35223,
-       )
+        zipcode: 35_223,
+      )
     end
 
     it "'buys' a shipping rate after transitioning to ship" do

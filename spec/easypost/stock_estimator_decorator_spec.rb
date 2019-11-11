@@ -20,7 +20,7 @@ RSpec.describe Spree::Stock::Estimator, :vcr do
         before { create_shipping_methods }
 
         it 'create no new shipping methods' do
-          expect { subject }.to_not change { Spree::ShippingMethod.count }
+          expect { subject }.not_to change { Spree::ShippingMethod.count }
         end
 
         context 'shipping methods are front end visible' do
@@ -40,6 +40,7 @@ RSpec.describe Spree::Stock::Estimator, :vcr do
 
         context 'shipping methods are not front end visible' do
           before { Spree::ShippingMethod.find_each { |x| x.update!(available_to_users: false) } }
+
           it 'is empty' do
             expect(subject).to be_empty
           end
@@ -72,7 +73,7 @@ RSpec.describe Spree::Stock::Estimator, :vcr do
       end
 
       it 'create no new shipping methods' do
-        expect { subject }.to_not change { Spree::ShippingMethod.count }
+        expect { subject }.not_to change { Spree::ShippingMethod.count }
       end
     end
   end

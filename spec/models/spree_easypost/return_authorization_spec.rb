@@ -23,6 +23,7 @@ RSpec.describe Spree::EasyPost::ReturnAuthorization, :vcr do
 
   describe '#return_label' do
     subject { auth.return_label shipment.rates.first }
+
     let(:shipment) { auth.easypost_shipment }
 
     it 'is an EasyPost::PackageLabel object' do

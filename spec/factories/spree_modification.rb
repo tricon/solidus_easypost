@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'spree/testing_support/factories'
+require 'solidus_easypost/factories'
+
 FactoryBot.modify do
   factory :shipping_method do
     admin_name { 'Stuff' }
