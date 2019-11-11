@@ -37,3 +37,7 @@ module ShippingMethodHelpers
     end
   end
 end
+
+RSpec.configure do |config|
+  config.include ShippingMethodHelpers
+end

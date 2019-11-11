@@ -24,15 +24,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'solidus', ['>= 2.0', '< 3']
   s.add_dependency 'solidus_support', '~> 0.3.3'
 
-  s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'ffaker'
   s.add_development_dependency 'pry'
-  s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'sass-rails'
-  s.add_development_dependency 'selenium-webdriver'
-  s.add_development_dependency 'simplecov'
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'webmock'
+  s.add_development_dependency 'solidus_extension_dev_tools'
 end
