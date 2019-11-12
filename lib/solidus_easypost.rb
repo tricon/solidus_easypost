@@ -5,7 +5,7 @@ require 'solidus_core'
 
 module Solidus
   module EasyPost
-    CONFIGS = { purchase_labels?: true }.freeze
+    CONFIGS = { purchase_labels?: true } # rubocop:disable Style/MutableConstant
   end
 end
 
