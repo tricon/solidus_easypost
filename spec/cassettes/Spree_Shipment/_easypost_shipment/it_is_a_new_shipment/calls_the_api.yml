@@ -33,7 +33,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Ep-Request-Uuid:
-      - d9da60c35d775cdcee70bbc500002105
+      - 43c6543d5dca6f09ee72826c00010d16
       Cache-Control:
       - no-cache, no-store, must-revalidate, private
       Pragma:
@@ -41,39 +41,37 @@ http_interactions:
       Expires:
       - '0'
       Location:
-      - "/api/v2/addresses/adr_c309ef7d182c44698e3f6dafc50e3fb2"
+      - "/api/v2/addresses/adr_35ee741b769c4fe089e15f26a5355de8"
       Content-Type:
       - application/json; charset=utf-8
       X-Runtime:
-      - '0.035265'
+      - '0.029900'
       Transfer-Encoding:
       - chunked
       X-Node:
-      - bigweb7sj
+      - bigweb2sj
       X-Version-Label:
-      - easypost-201909091924-20b1629d24-master
+      - easypost-201911120131-f5c72b1880-master
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Proxied:
-      - extlb2wdc ff5a2958df
+      - extlb2wdc 2744487620
+      - intlb1wdc ff5a2958df
       - intlb2sj ff5a2958df
-      - intlb2wdc ff5a2958df
       Strict-Transport-Security:
       - max-age=15768000; includeSubDomains; preload
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"adr_c309ef7d182c44698e3f6dafc50e3fb2","object":"Address","created_at":"2019-09-10T08:20:44Z","updated_at":"2019-09-10T08:20:44Z","name":"John
+      string: '{"id":"adr_35ee741b769c4fe089e15f26a5355de8","object":"Address","created_at":"2019-11-12T08:36:25Z","updated_at":"2019-11-12T08:36:25Z","name":"John
         Doe","company":"Company","street1":"A Different Road","street2":"Northwest","city":"Manville","state":"NJ","zip":"08835","country":"US","phone":"5555550199","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
     http_version: 
-  recorded_at: Tue, 10 Sep 2019 08:20:45 GMT
+  recorded_at: Tue, 12 Nov 2019 08:36:25 GMT
 - request:
     method: post
     uri: https://api.easypost.com/v2/addresses
     body:
       encoding: UTF-8
-      string: address[street1]=131%20S%208th%20Ave&address[city]=Manville&address[zip]=08835&address[phone]=(202)%20456-1111&address[state]=NJ&address[country]=US
+      string: address[street1]=131%20S%208th%20Ave&address[city]=Manville&address[zip]=08835&address[phone]=(202)%20456-1111&address[name]=NY%20Warehouse&address[company]=NY%20Warehouse&address[state]=NJ&address[country]=US
     headers:
       Accept:
       - "*/*"
@@ -84,7 +82,7 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       Content-Length:
-      - '148'
+      - '209'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
@@ -101,7 +99,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Ep-Request-Uuid:
-      - d9da60c35d775cddee7392af00002122
+      - 43c6543d5dca6f0aee6164ec00010d21
       Cache-Control:
       - no-cache, no-store, must-revalidate, private
       Pragma:
@@ -109,31 +107,31 @@ http_interactions:
       Expires:
       - '0'
       Location:
-      - "/api/v2/addresses/adr_1270bc6e45f140f4817f4e98128ec7b1"
+      - "/api/v2/addresses/adr_5cd6a12b354842dc9ae8e48eb09d1f08"
       Content-Type:
       - application/json; charset=utf-8
       X-Runtime:
-      - '0.034150'
+      - '0.029010'
       Transfer-Encoding:
       - chunked
       X-Node:
-      - bigweb2sj
+      - bigweb11sj
       X-Version-Label:
-      - easypost-201909091924-20b1629d24-master
+      - easypost-201911120131-f5c72b1880-master
       X-Backend:
       - easypost
       X-Proxied:
-      - extlb2wdc ff5a2958df
-      - intlb2sj ff5a2958df
+      - extlb2wdc 2744487620
+      - intlb1sj ff5a2958df
       - intlb2wdc ff5a2958df
       Strict-Transport-Security:
       - max-age=15768000; includeSubDomains; preload
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"adr_1270bc6e45f140f4817f4e98128ec7b1","object":"Address","created_at":"2019-09-10T08:20:45Z","updated_at":"2019-09-10T08:20:45Z","name":null,"company":null,"street1":"131
-        S 8th Ave","street2":null,"city":"Manville","state":"NJ","zip":"08835","country":"US","phone":"2024561111","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
+      string: '{"id":"adr_5cd6a12b354842dc9ae8e48eb09d1f08","object":"Address","created_at":"2019-11-12T08:36:26Z","updated_at":"2019-11-12T08:36:26Z","name":"NY
+        Warehouse","company":"NY Warehouse","street1":"131 S 8th Ave","street2":null,"city":"Manville","state":"NJ","zip":"08835","country":"US","phone":"2024561111","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
     http_version: 
-  recorded_at: Tue, 10 Sep 2019 08:20:45 GMT
+  recorded_at: Tue, 12 Nov 2019 08:36:26 GMT
 - request:
     method: post
     uri: https://api.easypost.com/v2/parcels
@@ -167,7 +165,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Ep-Request-Uuid:
-      - d9da60c35d775cdeee7282d500002139
+      - 43c6543d5dca6f0aee71449000010d30
       Cache-Control:
       - no-cache, no-store, must-revalidate, private
       Pragma:
@@ -175,28 +173,28 @@ http_interactions:
       Expires:
       - '0'
       Location:
-      - "/api/v2/parcels/prcl_5374e3fbff504a159591a69dace5a804"
+      - "/api/v2/parcels/prcl_0e8567955b454974970612f6d0745cd1"
       Content-Type:
       - application/json; charset=utf-8
       X-Runtime:
-      - '0.027796'
+      - '0.026836'
       Transfer-Encoding:
       - chunked
       X-Node:
-      - bigweb10sj
+      - bigweb11sj
       X-Version-Label:
-      - easypost-201909091924-20b1629d24-master
+      - easypost-201911120131-f5c72b1880-master
       X-Backend:
       - easypost
       X-Proxied:
-      - extlb2wdc ff5a2958df
-      - intlb1sj ff5a2958df
-      - intlb1wdc ff5a2958df
+      - extlb2wdc 2744487620
+      - intlb2sj ff5a2958df
+      - intlb2wdc ff5a2958df
       Strict-Transport-Security:
       - max-age=15768000; includeSubDomains; preload
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"prcl_5374e3fbff504a159591a69dace5a804","object":"Parcel","created_at":"2019-09-10T08:20:46Z","updated_at":"2019-09-10T08:20:46Z","length":null,"width":null,"height":null,"predefined_package":null,"weight":10.0,"mode":"test"}'
+      string: '{"id":"prcl_0e8567955b454974970612f6d0745cd1","object":"Parcel","created_at":"2019-11-12T08:36:26Z","updated_at":"2019-11-12T08:36:26Z","length":null,"width":null,"height":null,"predefined_package":null,"weight":10.0,"mode":"test"}'
     http_version: 
-  recorded_at: Tue, 10 Sep 2019 08:20:46 GMT
+  recorded_at: Tue, 12 Nov 2019 08:36:27 GMT
 recorded_with: VCR 5.0.0

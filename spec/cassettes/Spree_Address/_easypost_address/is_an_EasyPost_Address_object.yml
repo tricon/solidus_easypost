@@ -33,7 +33,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       X-Ep-Request-Uuid:
-      - d9da60c35d775ce8ee6fafcb000022b9
+      - 43c6543d5dca6f1eee81b6c100010e89
       Cache-Control:
       - no-cache, no-store, must-revalidate, private
       Pragma:
@@ -41,29 +41,29 @@ http_interactions:
       Expires:
       - '0'
       Location:
-      - "/api/v2/addresses/adr_5531e5c1860743cfb11a1b40cbe12f7e"
+      - "/api/v2/addresses/adr_34cdc73ca7cf43e884933c4b55d852b5"
       Content-Type:
       - application/json; charset=utf-8
       X-Runtime:
-      - '0.045085'
+      - '0.033121'
       Transfer-Encoding:
       - chunked
       X-Node:
-      - bigweb10sj
+      - bigweb6sj
       X-Version-Label:
-      - easypost-201909091924-20b1629d24-master
+      - easypost-201911120131-f5c72b1880-master
       X-Backend:
       - easypost
       X-Proxied:
-      - extlb2wdc ff5a2958df
-      - intlb2sj ff5a2958df
-      - intlb2wdc ff5a2958df
+      - extlb2wdc 2744487620
+      - intlb1sj ff5a2958df
+      - intlb1wdc ff5a2958df
       Strict-Transport-Security:
       - max-age=15768000; includeSubDomains; preload
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"adr_5531e5c1860743cfb11a1b40cbe12f7e","object":"Address","created_at":"2019-09-10T08:20:57Z","updated_at":"2019-09-10T08:20:57Z","name":"John
+      string: '{"id":"adr_34cdc73ca7cf43e884933c4b55d852b5","object":"Address","created_at":"2019-11-12T08:36:46Z","updated_at":"2019-11-12T08:36:46Z","name":"John
         Doe","company":"Company","street1":"215 N 7th Ave","street2":"Northwest","city":"Manville","state":"NJ","zip":"08835","country":"US","phone":"5555550199","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
     http_version: 
-  recorded_at: Tue, 10 Sep 2019 08:20:57 GMT
+  recorded_at: Tue, 12 Nov 2019 08:36:46 GMT
 recorded_with: VCR 5.0.0

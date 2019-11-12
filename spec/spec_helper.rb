@@ -9,5 +9,3 @@ require File.expand_path('dummy/config/environment.rb', __dir__)
 require 'solidus_extension_dev_tools/rspec/feature_helper'
 
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
-
-FactoryBot.use_parent_strategy = false
