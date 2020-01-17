@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'solidus_support'
 require 'solidus_core'
+require 'solidus_support'
 
 module Solidus
   module EasyPost
@@ -10,4 +10,6 @@ module Solidus
 end
 
 require 'easypost'
+require 'deface'
+require 'solidus_easypost/version'
 require 'solidus_easypost/engine'

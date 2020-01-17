@@ -1,0 +1,5 @@
+bump:
+  recurse: false
+  file: 'lib/solidus_easypost/version.rb'
+  message: Bump SolidusEasypost to %{version}
+  tag: true
