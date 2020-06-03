@@ -5,7 +5,7 @@ require 'solidus_easypost/version'
 
 Gem::Specification.new do |s|
   s.name = 'solidus_easypost'
-  s.version = Solidus::EasyPost::VERSION
+  s.version = SolidusEasypost::VERSION
   s.summary = 'Easy post integration for Solidus'
   s.description = s.summary
   s.license = 'BSD-3-Clause'

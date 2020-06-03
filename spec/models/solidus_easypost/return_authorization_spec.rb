@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Spree::EasyPost::ReturnAuthorization, :vcr do
+RSpec.describe SolidusEasypost::ReturnAuthorization, :vcr do
   let(:auth) { described_class.new return_authorization }
   let(:return_authorization) do
     create :return_authorization do |ra|
