@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-module Solidus
-  module EasyPost
-    VERSION = "2.0"
-  end
+module SolidusEasypost
+  VERSION = "2.0"
 end
