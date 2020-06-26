@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/solidusio-contrib/solidus_easypost.svg?style=svg)](https://circleci.com/gh/solidusio-contrib/solidus_easypost)
 
-This is an extension to integrate Easy Post into Spree. Due to how it works, you will not be able to use any other extension than this for shipping methods. Your own shipping methods will not work, either. But the good thing is that you won't have to worry about that, because Easy Post handles it all for you.
+This is an extension to integrate EasyPost into Spree. Due to how it works, you will not be able to use any other extension than this for shipping methods. Your own shipping methods will not work, either. But the good thing is that you won't have to worry about that, because EasyPost handles it all for you.
 
 You will need to [sign up for an account](https://www.easypost.com/) to use this extension.
 
