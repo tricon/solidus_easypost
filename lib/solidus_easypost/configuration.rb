@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SolidusEasypost
   class Configuration
     attr_reader :purchase_labels
