@@ -15,7 +15,7 @@ module SolidusEasypost
     end
 
     def easypost_shipment
-      @ep_shipment ||= ::EasyPost::Shipment.create(
+      @easypost_shipment ||= ::EasyPost::Shipment.create(
         from_address: stock_location.easypost_address,
         to_address: order.ship_address.easypost_address,
         parcel: build_parcel,

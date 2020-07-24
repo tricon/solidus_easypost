@@ -13,7 +13,11 @@ module SolidusEasypost
         }
 
         attributes[:company] = company if respond_to?(:company)
-        attributes[:name] = full_name if respond_to?(:full_name)
+        attributes[:name] = if respond_to?(:name)
+                              name
+                            elsif respond_to?(:full_name)
+                              full_name
+        end
         attributes[:state] = state ? state.abbr : state_name
         attributes[:country] = country&.iso
 

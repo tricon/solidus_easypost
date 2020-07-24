@@ -3,10 +3,19 @@
 require 'solidus_core'
 require 'solidus_support'
 require 'easypost'
-require 'deface'
+
 require 'solidus_easypost/version'
 require 'solidus_easypost/engine'
+require 'solidus_easypost/configuration'
 
 module SolidusEasypost
-  CONFIGS = { purchase_labels?: true } # rubocop:disable Style/MutableConstant
+  class << self
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def configure
+      yield configuration
+    end
+  end
 end
