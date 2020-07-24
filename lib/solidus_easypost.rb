@@ -3,7 +3,7 @@
 require 'solidus_core'
 require 'solidus_support'
 require 'easypost'
-require 'deface'
+
 require 'solidus_easypost/version'
 require 'solidus_easypost/engine'
 
