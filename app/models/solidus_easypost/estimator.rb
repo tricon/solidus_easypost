@@ -19,11 +19,15 @@ module SolidusEasypost
 
       ::Spree::ShippingRate.new(
         name: "#{rate.carrier} #{rate.service}",
-        cost: rate.rate,
+        cost: shipping_rate_calculator.compute(rate),
         easy_post_shipment_id: rate.shipment_id,
         easy_post_rate_id: rate.id,
         shipping_method: shipping_method,
       )
+    end
+
+    def shipping_rate_calculator
+      @shipping_rate_calculator ||= SolidusEasypost.configuration.shipping_rate_calculator_class.new
     end
 
     def shipping_method_selector

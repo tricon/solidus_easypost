@@ -6,6 +6,10 @@ SolidusEasypost.configure do |config|
   # Purchase labels from EasyPost when shipping shipments in Solidus?
   # config.purchase_labels = true
 
+  # A class that responds to `#compute`, accepting an `EasyPost::Rate`
+  # instance and returning the cost for that rate.
+  # config.shipping_rate_calculator_class = 'SolidusEasypost::ShippingRateCalculator'
+
   # A class that responds to `#shipping_method_for`, accepting an
   # `EasyPost::Rate` instance and returning the shipping method for
   # that rate.

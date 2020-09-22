@@ -7,6 +7,7 @@ require 'easypost'
 require 'solidus_easypost/version'
 require 'solidus_easypost/engine'
 require 'solidus_easypost/configuration'
+require 'solidus_easypost/shipping_rate_calculator'
 require 'solidus_easypost/shipping_method_selector'
 
 module SolidusEasypost
