@@ -14,7 +14,7 @@ module SolidusEasypost
     private
 
     def build_shipping_rate(rate)
-      shipping_method = build_shipping_method(rate)
+      shipping_method = shipping_method_selector.shipping_method_for(rate)
       return unless shipping_method.available_to_users?
 
       ::Spree::ShippingRate.new(
@@ -26,16 +26,8 @@ module SolidusEasypost
       )
     end
 
-    def build_shipping_method(rate)
-      name = "#{rate.carrier} #{rate.service}"
-
-      ::Spree::ShippingMethod.find_or_create_by(admin_name: name) do |shipping_method|
-        shipping_method.name = name
-        shipping_method.available_to_users = false
-        shipping_method.code = rate.service
-        shipping_method.calculator = ::Spree::Calculator::Shipping::FlatRate.create
-        shipping_method.shipping_categories = [::Spree::ShippingCategory.first]
-      end
+    def shipping_method_selector
+      @shipping_method_selector ||= SolidusEasypost.configuration.shipping_method_selector_class.new
     end
   end
 end
