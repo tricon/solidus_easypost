@@ -17,7 +17,7 @@ module SolidusEasypost
                               name
                             elsif respond_to?(:full_name)
                               full_name
-        end
+                            end
         attributes[:state] = state ? state.abbr : state_name
         attributes[:country] = country&.iso
 

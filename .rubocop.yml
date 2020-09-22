@@ -5,3 +5,6 @@ require:
 
 Layout/LineLength:
   Enabled: false
+
+AllCops:
+  NewCops: enable
