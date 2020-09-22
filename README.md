@@ -25,6 +25,9 @@ Bundle your dependencies and run the installation generator:
 bin/rails generate solidus_easypost:install
 ```
 
+This will create an initializer at `config/initializers/solidus_easypost.rb`. Read through the
+available configuration options and make sure to adjust the extension for your requirements.
+
 Finally, you will need to configure Solidus to use the EasyPost stock estimator:
 
 ```ruby
