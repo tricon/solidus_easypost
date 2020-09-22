@@ -25,10 +25,13 @@ Bundle your dependencies and run the installation generator:
 bin/rails generate solidus_easypost:install
 ```
 
-Create an initializer at `config/initializers/solidus_easypost.rb`:
+Finally, you will need to configure Solidus to use the EasyPost stock estimator:
 
 ```ruby
-EasyPost.api_key = 'YOUR_API_KEY_HERE'
+# config/initializers/spree.rb
+Spree.config do |config|
+  config.stock.estimator_class = 'SolidusEasypost::Estimator'
+end
 ```
 
 ## Usage
