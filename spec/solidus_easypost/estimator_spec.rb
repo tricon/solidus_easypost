@@ -2,79 +2,49 @@
 
 require 'spec_helper'
 
-RSpec.describe SolidusEasypost::Estimator, :vcr do
-  if Spree.solidus_gem_version < Gem::Version.new("1.3")
-    let(:estimator) { described_class.new(shipment.order) }
-  else
-    let(:estimator) { described_class.new }
+RSpec.describe SolidusEasypost::Estimator, vcr: { cassette_name: 'estimator' } do
+  describe '#shipping_rates' do
+    context 'when the shipping methods are available to users' do
+      it 'returns the shipping rates' do
+        stub_shipping_method_selector(available_to_users: true)
+
+        rates = described_class.new.shipping_rates(create(:shipment).to_package)
+
+        expect(rates.sort_by(&:name).map { |r| [r.name, r.cost] }.to_h).to eq({
+                                                                                "USPS Express" => 22.74,
+                                                                                "USPS First" => 3.82,
+                                                                                "USPS ParcelSelect" => 6.85,
+                                                                                "USPS Priority" => 6.95,
+                                                                              })
+      end
+    end
+
+    context 'when the shipping methods are not available to users' do
+      it 'returns no rates' do
+        stub_shipping_method_selector(available_to_users: false)
+
+        rates = described_class.new.shipping_rates(create(:shipment).to_package)
+
+        expect(rates).to be_empty
+      end
+    end
   end
 
-  let!(:shipment) { create :shipment }
-  let(:package) { shipment.to_package }
+  private
 
-  describe '#shipping_rates' do
-    subject { estimator.shipping_rates package }
-
-    context 'when rates are found' do
-      context 'when shipping methods exist' do
-        before { create_shipping_methods }
-
-        it 'create no new shipping methods' do
-          expect { subject }.not_to change(Spree::ShippingMethod, :count)
-        end
-
-        context 'when shipping methods are front end visible' do
-          let(:rate_names) { ["USPS Express", "USPS First", "USPS ParcelSelect", "USPS Priority"] }
-          let(:rate_costs) { [3.82, 6.85, 6.95, 22.74] }
-
-          it 'has the correct names' do
-            names = subject.map(&:name).sort
-            expect(names).to eq rate_names
-          end
-
-          it 'has the correct costs' do
-            costs = subject.map(&:cost).sort
-            expect(costs).to eq rate_costs
-          end
-        end
-
-        context 'when shipping methods are not front end visible' do
-          before { Spree::ShippingMethod.find_each { |x| x.update!(available_to_users: false) } }
-
-          it 'is empty' do
-            expect(subject).to be_empty
-          end
-        end
-      end
-
-      context 'when shipping methods dont exist' do
-        # new shipping methods are backend only
-        it 'is empty' do
-          expect(subject).to be_empty
-        end
-
-        it 'creates new shipping methods' do
-          expect { subject }.to change { Spree::ShippingMethod.count }.by 4
-        end
+  def stub_shipping_method_selector(available_to_users:)
+    shipping_method_selector = Class.new.tap do |klass|
+      klass.define_method(:shipping_method_for) do |rate|
+        Spree::ShippingMethod.new(
+          name: "#{rate.carrier} #{rate.service}",
+          available_to_users: available_to_users,
+        )
       end
     end
 
-    context 'when no rates are found' do
-      let(:package) do
-        instance_double(Spree::Stock::Package, easypost_shipment: fake_shipment)
-      end
+    stub_const('FakeShippingMethodSelector', shipping_method_selector)
 
-      let(:fake_shipment) do
-        double(EasyPost::Shipment, rates: [])
-      end
-
-      it 'is empty' do
-        expect(subject).to be_empty
-      end
-
-      it 'create no new shipping methods' do
-        expect { subject }.not_to change(Spree::ShippingMethod, :count)
-      end
-    end
+    allow(SolidusEasypost.configuration).to receive(:shipping_method_selector_class)
+      .and_return(FakeShippingMethodSelector)
   end
 end
