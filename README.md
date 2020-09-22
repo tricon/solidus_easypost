@@ -113,4 +113,4 @@ bundle exec gem bump -v VERSION --tag --push --remote upstream && gem release
 
 ## License
 
-Copyright (c) 2020 Brendan Deere, released under the New BSD License.
+Copyright (c) 2015 Brendan Deere, released under the New BSD License.
