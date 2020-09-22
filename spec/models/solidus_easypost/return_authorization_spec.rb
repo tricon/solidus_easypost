@@ -9,6 +9,7 @@ RSpec.describe SolidusEasypost::ReturnAuthorization, :vcr do
       ra.return_items << create(:return_item)
     end
   end
+
   before { create :shipping_method, admin_name: 'USPS Priority' }
 
   before { create :store }
