@@ -8,8 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['Brendan Deere']
   spec.email = 'brendan@stembolt.com'
 
-  spec.summary = 'Easy post integration for Solidus'
-  spec.description = 'Easy post integration for Solidus'
+  spec.summary = 'EasyPost integration for Solidus stores.'
   spec.homepage = 'https://github.com/solidusio-contrib/solidus_easypost'
   spec.license = 'BSD-3-Clause'
 
