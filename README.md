@@ -39,23 +39,32 @@ end
 
 ## Usage
 
-This extension hijacks `Spree::Stock::Estimator#shipping_rates` to calculate shipping rates for your
-orders. This call happens during the checkout process, once the order's address information has been
-provided.
+Once you switch to the EasyPost rate calculator, the extension will start calculating shipping rates
+for all shipments. The cheapest rate will be selected by default, but your users will be able to
+change the selected rate in the `delivery` step of the checkout process, if they wish.
 
-The extension also adds a callback to the `ship` event on the `Spree::Shipment` model, telling
-EasyPost which rate was selected and "buying" that rate. This can be disabled by setting:
+### Buying labels upon shipping
 
-```ruby
-# config/initializers/solidus_easypost.rb
-SolidusEasypost.configure do |config|
-  config.purchase_labels = false
-end
-```
+By default, the extension also adds a callback to the `ship` event on the `Spree::Shipment` model,
+automatically buying the selected rate from EasyPost.
 
-This gem will create shipping methods for each type of carrier/service for which it receives a rate
-from the EasyPost API. These are set to  `display_on: back_end` by default and must be set to
-`front_end` or `both` before the rate will be visible on the delivery page of the checkout.
+If you want to disable this logic, you can set `purchase_labels` to `false`.
+
+### Customizing shipping rate calculation
+
+By default, the extension will pass the entire cost of shipping to the user (i.e., the shipping cost
+presented to the user will be equal to the rate received from the EasyPost API).
+
+If you want to override this logic (e.g., you want to offer your users free shipping, but still buy
+the rates from EasyPost), you can provide your own `shipping_rate_calculator_class`.
+
+### Customizing shipping method selection
+
+By default, the extension will create shipping methods for each type of carrier/service for which it
+receives a rate from the EasyPost API. These are not available to users by default, and must be
+enabled before they are visible and selectable in the storefront during the checkout process.
+
+If you want to override this logic, you can provide your own `shipping_method_selector_class`.
 
 ## Development
 
