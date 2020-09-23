@@ -1,10 +1,2 @@
-inherit_from: .rubocop_todo.yml
-
 require:
   - solidus_dev_support/rubocop
-
-Layout/LineLength:
-  Enabled: false
-
-AllCops:
-  NewCops: enable
