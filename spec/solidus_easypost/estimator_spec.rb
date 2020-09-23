@@ -10,12 +10,14 @@ RSpec.describe SolidusEasypost::Estimator, vcr: { cassette_name: 'estimator' } d
 
         rates = described_class.new.shipping_rates(create(:shipment).to_package)
 
-        expect(rates.sort_by(&:name).map { |r| [r.name, r.cost] }.to_h).to eq({
-                                                                                "USPS Express" => 22.74,
-                                                                                "USPS First" => 3.82,
-                                                                                "USPS ParcelSelect" => 6.85,
-                                                                                "USPS Priority" => 6.95,
-                                                                              })
+        expect(rates.sort_by(&:name).map { |r| [r.name, r.cost] }.to_h).to eq(
+          {
+            "USPS Express" => 22.74,
+            "USPS First" => 3.82,
+            "USPS ParcelSelect" => 6.85,
+            "USPS Priority" => 6.95,
+          }
+        )
       end
     end
 

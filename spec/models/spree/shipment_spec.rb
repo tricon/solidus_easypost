@@ -2,78 +2,67 @@
 
 require 'spec_helper'
 
-RSpec.describe Spree::Shipment, :vcr do
-  let!(:shipment) { order.shipments.first }
-  let!(:order) do
-    create(:order_with_line_items, line_items_count: 1, ship_address: to) do |order|
-      order.variants.each { |v| v.update! weight: 10 }
-    end
-  end
-
-  let(:to) do
-    Spree::Address.create(
-      firstname: 'Newt',
-      lastname: 'Scamander',
-      address1: '200 19th St',
-      city: 'Birmingham',
-      state: Spree::State.first || create(:state),
-      country: Spree::Country.first || create(:country),
-      zipcode: 35_203,
-      phone: '123456789'
-    )
-  end
-
-  before do
-    create_shipping_methods
-    shipment.stock_location.update(
-      address1: '2630 Cahaba Rd',
-      city: 'Birmingham',
-      state: Spree::State.first,
-      country: Spree::Country.first,
-      zipcode: 35_223,
-    )
-  end
-
-  it "'buys' a shipping rate after transitioning to ship" do
-    shipment.refresh_rates
-    shipment.state = 'ready'
-
-    shipment.ship!
-    expect(shipment.tracking).to be_present
-  end
-
+RSpec.describe Spree::Shipment do
   describe '#easypost_shipment' do
-    subject { shipment.easypost_shipment }
+    context 'when no shipping rate was selected' do
+      it 'returns nil' do
+        shipment = create(:shipment)
 
-    shared_examples 'an easypost shipment' do
-      it 'is an EasyPost::Shipment object' do
-        expect(subject).to be_a(EasyPost::Shipment)
+        expect(shipment.easypost_shipment).to be_nil
       end
     end
 
-    context 'when it is a new shipment' do
-      it_behaves_like 'an easypost shipment'
+    context 'when a shipping rate was selected' do
+      it 'returns the shipment associated with the shipping rate' do
+        easypost_shipment = stub_easypost_shipment
+        shipment = create(
+          :shipment,
+          :with_easypost,
+          easypost_shipment_id: easypost_shipment.id,
+        )
 
-      it 'calls the api' do
-        expect(EasyPost::Shipment).to receive(:create).with(anything)
-        subject
+        expect(shipment.easypost_shipment).to eq(easypost_shipment)
+      end
+    end
+  end
+
+  describe '#ship!' do
+    context 'when purchase_labels is true' do
+      it 'buys the selected rate' do
+        stub_easypost_config(purchase_labels: true)
+        easypost_shipment = stub_easypost_shipment
+        selected_easypost_rate = easypost_shipment.rates.first
+
+        shipment = create(
+          :shipment,
+          :with_easypost,
+          state: 'ready',
+          easypost_shipment_id: easypost_shipment.id,
+          easypost_rate_id: selected_easypost_rate.id,
+        )
+        shipment.ship!
+
+        expect(easypost_shipment).to have_received(:buy).with(selected_easypost_rate)
       end
     end
 
-    context 'when it is an existing shipment' do
-      let(:new_shipment) { create :shipment }
+    context 'when purchase_labels is false' do
+      it 'does not buy rates automatically' do
+        stub_easypost_config(purchase_labels: false)
+        easypost_shipment = stub_easypost_shipment
+        selected_easypost_rate = easypost_shipment.rates.first
 
-      before do
-        ep_id = shipment.easypost_shipment.id
-        shipment.shipping_rates.first.update selected: true, easy_post_shipment_id: ep_id
-        shipment.instance_variable_set('@ep_shipment', nil)
-      end
+        shipment = create(
+          :shipment,
+          :with_easypost,
+          state: 'ready',
+          easypost_shipment_id: easypost_shipment.id,
+          easypost_rate_id: selected_easypost_rate.id,
+        )
 
-      it_behaves_like 'an easypost shipment'
+        shipment.ship!
 
-      it 'loads the existing shipment' do
-        expect(EasyPost::Shipment).to receive(:retrieve).with(anything)
-        subject
+        expect(easypost_shipment).not_to have_received(:buy)
       end
     end
   end

@@ -1,5 +1,5 @@
-RSpec.describe SolidusEasypost::ParcelBuilder, vcr: { cassette_name: 'parcel_builder' } do
-  describe '.from_package' do
+RSpec.describe SolidusEasypost::ParcelBuilder do
+  describe '.from_package', vcr: { cassette_name: 'parcel_builder/from_package' } do
     it 'builds a parcel with the correct attributes' do
       parcel = described_class.from_package(create(:shipment).to_package)
 
@@ -7,9 +7,9 @@ RSpec.describe SolidusEasypost::ParcelBuilder, vcr: { cassette_name: 'parcel_bui
     end
   end
 
-  describe '.from_return_authorization' do
+  describe '.from_return_authorization', vcr: { cassette_name: 'parcel_builder/from_return_authorization' } do
     it 'builds a parcel with the correct attributes' do
-      shipment = described_class.from_return_authorization(create(:return_authorization))
+      shipment = described_class.from_return_authorization(create(:return_item).return_authorization)
 
       expect(shipment).to have_attributes(object: 'Parcel')
     end

@@ -2,15 +2,22 @@
 
 require 'spec_helper'
 
-RSpec.describe Spree::ShippingRate, :vcr do
-  let(:rate) { described_class.new name: name }
-  let(:name) { 'SuperAwesomeCool' }
-
+RSpec.describe Spree::ShippingRate do
   describe '#name' do
-    subject { rate.name }
+    context 'when the shipping rate has its own name' do
+      it 'returns the name on the shipping rate' do
+        shipping_rate = build_stubbed(:shipping_rate, name: 'USPS Express')
 
-    it 'has the right name' do
-      expect(subject).to eq(name)
+        expect(shipping_rate.name).to eq('USPS Express')
+      end
+    end
+
+    context 'when the shipping rate does not have its own name' do
+      it 'returns the name on the shipping method' do
+        shipping_rate = build_stubbed(:shipping_rate, name: nil)
+
+        expect(shipping_rate.name).to eq(shipping_rate.shipping_method.name)
+      end
     end
   end
 end
