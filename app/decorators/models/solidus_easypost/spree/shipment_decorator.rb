@@ -3,38 +3,37 @@
 module SolidusEasypost
   module Spree
     module ShipmentDecorator
-      def self.prepended(mod)
-        mod.state_machine.before_transition(
+      def self.prepended(base)
+        base.state_machine.before_transition(
           to: :shipped,
           do: :buy_easypost_rate,
           if: -> { SolidusEasypost.configuration.purchase_labels }
         )
+
+        base.delegate(
+          :easy_post_rate_id,
+          :easy_post_shipment_id,
+          to: :selected_shipping_rate,
+          prefix: :selected,
+          allow_nil: true,
+        )
       end
 
       def easypost_shipment
-        if selected_easy_post_shipment_id
-          @ep_shipment ||= ::EasyPost::Shipment.retrieve(selected_easy_post_shipment_id)
-        else
-          @ep_shipment = ShipmentBuilder.from_shipment(self)
-        end
+        return unless selected_easy_post_shipment_id
+
+        @easypost_shipment ||= ::EasyPost::Shipment.retrieve(selected_easy_post_shipment_id)
       end
 
       private
 
-      def selected_easy_post_rate_id
-        selected_shipping_rate.easy_post_rate_id
-      end
-
-      def selected_easy_post_shipment_id
-        selected_shipping_rate.easy_post_shipment_id
-      end
-
       def buy_easypost_rate
-        rate = easypost_shipment.rates.find do |sr|
-          sr.id == selected_easy_post_rate_id
+        rate = easypost_shipment.rates.find do |easypost_rate|
+          easypost_rate.id == selected_easy_post_rate_id
         end
 
         easypost_shipment.buy(rate)
+
         self.tracking = easypost_shipment.tracking_code
       end
 
