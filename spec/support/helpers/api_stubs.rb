@@ -4,6 +4,7 @@ module SolidusEasypost
       def stub_easypost_shipment
         EasyPost::Shipment.class_eval do
           def rates; end
+
           def tracking_code; end
         end
 
