@@ -15,7 +15,7 @@ module SolidusEasypost
         if selected_easy_post_shipment_id
           @ep_shipment ||= ::EasyPost::Shipment.retrieve(selected_easy_post_shipment_id)
         else
-          @ep_shipment = build_easypost_shipment
+          @ep_shipment = ShipmentBuilder.from_shipment(self)
         end
       end
 
@@ -27,14 +27,6 @@ module SolidusEasypost
 
       def selected_easy_post_shipment_id
         selected_shipping_rate.easy_post_shipment_id
-      end
-
-      def build_easypost_shipment
-        ::EasyPost::Shipment.create(
-          to_address: order.ship_address.easypost_address,
-          from_address: stock_location.easypost_address,
-          parcel: to_package.easypost_parcel
-        )
       end
 
       def buy_easypost_rate

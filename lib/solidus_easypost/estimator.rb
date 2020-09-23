@@ -3,7 +3,7 @@
 module SolidusEasypost
   class Estimator
     def shipping_rates(package, _frontend_only = true)
-      easypost_rates = package.easypost_shipment.rates.sort_by(&:rate)
+      easypost_rates = ShipmentBuilder.from_package(package).rates.sort_by(&:rate)
 
       shipping_rates = easypost_rates.map(&method(:build_shipping_rate)).compact
       shipping_rates.min_by(&:cost)&.selected = true
