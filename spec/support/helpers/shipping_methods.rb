@@ -3,7 +3,7 @@ module SolidusEasypost
     module ShippingMethods
       def create_easypost_shipping_methods
         [
-          "USPS Express" ,
+          "USPS Express",
           "USPS First",
           "USPS ParcelSelect",
           "USPS Priority",
