@@ -25,6 +25,10 @@ module SolidusEasypost
         @easypost_shipment ||= ::EasyPost::Shipment.retrieve(selected_easy_post_shipment_id)
       end
 
+      def easypost_postage_label_url
+        easypost_shipment&.postage_label&.label_url
+      end
+
       private
 
       def buy_easypost_rate

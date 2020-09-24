@@ -43,6 +43,9 @@ Once you switch to the EasyPost rate calculator, the extension will start calcul
 for all shipments. The cheapest rate will be selected by default, but your users will be able to
 change the selected rate in the `delivery` step of the checkout process, if they wish.
 
+Admins will also be able to download the postage label associated to each EasyPost shipment after
+a shipment has been bought. 
+
 ### Buying labels upon shipping
 
 By default, the extension also adds a callback to the `ship` event on the `Spree::Shipment` model,

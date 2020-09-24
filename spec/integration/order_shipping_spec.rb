@@ -1,5 +1,3 @@
-require 'spree/testing_support/order_walkthrough'
-
 RSpec.describe 'Order shipping' do
   context 'with purchase_labels set to true', vcr: { cassette_name: 'integration/order_shipping/with_purchase_labels' } do
     it 'buys the rate in EasyPost' do

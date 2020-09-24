@@ -1,0 +1,10 @@
+<!-- insert_bottom '[data-hook="stock-contents"] tbody' -->
+
+<% if shipment.selected_easy_post_rate_id && shipment.shipped? %>
+  <tr class="postage-label">
+    <td colspan="5">
+      <strong><%= t('spree.postage_label') %>:</strong>
+      <%= link_to_with_icon('external-link', t('spree.open_postage_label'), admin_shipment_postage_label_path(shipment)) %>
+    </td>
+  </tr>
+<% end %>
