@@ -1,5 +1,3 @@
-require 'spree/testing_support/order_walkthrough'
-
 RSpec.describe 'Checkout' do
   it 'retrieves the rates from EasyPost', vcr: { cassette_name: 'integration/checkout' } do
     stub_easypost_config(purchase_labels: true)
