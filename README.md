@@ -88,6 +88,14 @@ retrieve the tracker in the future.
 > The extension already generates compliant shipping methods by default, but you may need to change
 > the data on your custom shipping methods if you want to track them. 
 
+You can also enable automatic tracking for all created cartons:
+
+```ruby
+SolidusEasypost.configure do |config|
+  config.track_all_cartons = true
+end
+```
+
 ## Development
 
 ### Testing the extension

@@ -3,6 +3,10 @@
 module SolidusEasypost
   module Spree
     module CartonDecorator
+      def self.prepended(base)
+        base.after_create :track_via_easypost
+      end
+
       def easypost_tracker
         return @easypost_tracker if @easypost_tracker
 
@@ -18,6 +22,14 @@ module SolidusEasypost
         end
 
         @easypost_tracker
+      end
+
+      private
+
+      def track_via_easypost
+        return unless SolidusEasypost.configuration.track_all_cartons
+
+        easypost_tracker
       end
 
       ::Spree::Carton.prepend self

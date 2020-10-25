@@ -6,6 +6,9 @@ SolidusEasypost.configure do |config|
   # Purchase labels from EasyPost when shipping shipments in Solidus?
   # config.purchase_labels = true
 
+  # Create a tracker in EasyPost and receive webhooks for all cartons?
+  # config.track_all_cartons = false
+
   # A class that responds to `#compute`, accepting an `EasyPost::Rate`
   # instance and returning the cost for that rate.
   # config.shipping_rate_calculator_class = 'SolidusEasypost::ShippingRateCalculator'

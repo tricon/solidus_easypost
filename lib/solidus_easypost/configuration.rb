@@ -2,11 +2,12 @@
 
 module SolidusEasypost
   class Configuration
-    attr_accessor :purchase_labels
+    attr_accessor :purchase_labels, :track_all_cartons
     attr_writer :shipping_rate_calculator_class, :shipping_method_selector_class
 
     def initialize
       self.purchase_labels = true
+      self.track_all_cartons = false
     end
 
     def shipping_rate_calculator_class
