@@ -3,12 +3,18 @@ module SolidusEasypost
     module ShippingMethods
       def create_easypost_shipping_methods
         [
-          "USPS Express",
-          "USPS First",
-          "USPS ParcelSelect",
-          "USPS Priority",
-        ].each do |name|
-          create(:shipping_method, admin_name: name, available_to_users: true)
+          %w[USPS Express],
+          %w[USPS First],
+          %w[USPS ParcelSelect],
+          %w[USPS Priority],
+        ].each do |(carrier, service_level)|
+          create(
+            :shipping_method,
+            name: "#{carrier} #{service_level}",
+            carrier: carrier,
+            service_level: service_level,
+            available_to_users: true,
+          )
         end
       end
     end
