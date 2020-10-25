@@ -69,6 +69,25 @@ enabled before they are visible and selectable in the storefront during the chec
 
 If you want to override this logic, you can provide your own `shipping_method_selector_class`.
 
+### Tracking cartons via EasyPost
+
+You can optionally track packages via EasyPost's [Trackers API](https://www.easypost.com/docs/api#trackers).
+In order to do this, you can call the `#easypost_tracker` method on any carton:
+
+```ruby
+carton = Spree::Carton.find(2)
+carton.easypost_tracker # => #<Easypost::Tracker>
+```
+
+This will also save the ID of the tracker on the `easy_post_tracker_id` column, to more easily
+retrieve the tracker in the future.
+
+> NOTE: In orders for carton tracking to work, you need to make sure that the `tracking` column
+> in `spree_cartons` contains a valid tracking number, and that the `carrier` column in
+> `spree_shipping_methods` contains a carrier name [that EasyPost will recognize](https://www.easypost.com/docs/api#carrier-tracking-strings).
+> The extension already generates compliant shipping methods by default, but you may need to change
+> the data on your custom shipping methods if you want to track them. 
+
 ## Development
 
 ### Testing the extension
