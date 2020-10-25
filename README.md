@@ -96,6 +96,26 @@ SolidusEasypost.configure do |config|
 end
 ```
 
+### Getting tracking updates via webhooks
+
+Once a tracker has been created for a given carton, you can either use it manually or you can use
+EasyPost's [webhooks](https://www.easypost.com/docs/api#webhooks) to have any shipping updates
+forwarded to your application.
+
+In order for webhooks to work, you need to install the [solidus_webhooks](https://github.com/solidusio-contrib/solidus_webhooks)
+extension. When the extension is available, a webhook will be automatically configured at
+`/webhooks/easypost_trackers`. Simply add it to your EasyPost dashboard with the following
+configuration:
+
+- *Environment:* `Production` or `Test`
+- *Webhook URL:* `https://your-store.com/webhooks/easypost_trackers?token=[YOUR_TOKEN]` (replace
+  `[YOUR_TOKEN]` with the API key of an admin user or, better yet, a 
+  [webhook user](https://github.com/solidusio-contrib/solidus_webhooks#restricting-permissions)
+
+Now, when Solidus gets a tracking update from EasyPost, a `solidus_easypost.tracker.updated` event
+will be fired. The event's payload will contain the `:carton` and `:payload` keys, with the
+`Spree::Carton` object associated to the tracker and the EasyPost payload respectively.
+
 ## Development
 
 ### Testing the extension

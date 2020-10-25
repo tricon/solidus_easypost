@@ -14,6 +14,7 @@ require 'solidus_easypost/shipment_builder'
 require 'solidus_easypost/estimator'
 require 'solidus_easypost/shipping_rate_calculator'
 require 'solidus_easypost/shipping_method_selector'
+require 'solidus_easypost/tracker_webhook_handler'
 
 module SolidusEasypost
   class << self
