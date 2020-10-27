@@ -69,6 +69,53 @@ enabled before they are visible and selectable in the storefront during the chec
 
 If you want to override this logic, you can provide your own `shipping_method_selector_class`.
 
+### Tracking cartons via EasyPost
+
+You can optionally track packages via EasyPost's [Trackers API](https://www.easypost.com/docs/api#trackers).
+In order to do this, you can call the `#easypost_tracker` method on any carton:
+
+```ruby
+carton = Spree::Carton.find(2)
+carton.easypost_tracker # => #<Easypost::Tracker>
+```
+
+This will also save the ID of the tracker on the `easy_post_tracker_id` column, to more easily
+retrieve the tracker in the future.
+
+> NOTE: In orders for carton tracking to work, you need to make sure that the `tracking` column
+> in `spree_cartons` contains a valid tracking number, and that the `carrier` column in
+> `spree_shipping_methods` contains a carrier name [that EasyPost will recognize](https://www.easypost.com/docs/api#carrier-tracking-strings).
+> The extension already generates compliant shipping methods by default, but you may need to change
+> the data on your custom shipping methods if you want to track them. 
+
+You can also enable automatic tracking for all created cartons:
+
+```ruby
+SolidusEasypost.configure do |config|
+  config.track_all_cartons = true
+end
+```
+
+### Getting tracking updates via webhooks
+
+Once a tracker has been created for a given carton, you can either use it manually or you can use
+EasyPost's [webhooks](https://www.easypost.com/docs/api#webhooks) to have any shipping updates
+forwarded to your application.
+
+In order for webhooks to work, you need to install the [solidus_webhooks](https://github.com/solidusio-contrib/solidus_webhooks)
+extension. When the extension is available, a webhook will be automatically configured at
+`/webhooks/easypost_trackers`. Simply add it to your EasyPost dashboard with the following
+configuration:
+
+- *Environment:* `Production` or `Test`
+- *Webhook URL:* `https://your-store.com/webhooks/easypost_trackers?token=[YOUR_TOKEN]` (replace
+  `[YOUR_TOKEN]` with the API key of an admin user or, better yet, a 
+  [webhook user](https://github.com/solidusio-contrib/solidus_webhooks#restricting-permissions)
+
+Now, when Solidus gets a tracking update from EasyPost, a `solidus_easypost.tracker.updated` event
+will be fired. The event's payload will contain the `:carton` and `:payload` keys, with the
+`Spree::Carton` object associated to the tracker and the EasyPost payload respectively.
+
 ## Development
 
 ### Testing the extension
