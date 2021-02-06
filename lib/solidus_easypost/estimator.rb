@@ -5,7 +5,7 @@ module SolidusEasypost
     def shipping_rates(package, _frontend_only = true)
       easypost_rates = ShipmentBuilder.from_package(package).rates.sort_by(&:rate)
 
-      shipping_rates = easypost_rates.map(&method(:build_shipping_rate)).compact
+      shipping_rates = easypost_rates.map { |rate| build_shipping_rate(rate) }.compact
       shipping_rates.min_by(&:cost)&.selected = true
 
       shipping_rates
