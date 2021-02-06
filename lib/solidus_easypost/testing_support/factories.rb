@@ -1,4 +1,3 @@
 # frozen_string_literal: true
 
-FactoryBot.define do
-end
+Dir["#{__dir__}/factories/**/*.rb"].sort.each { |f| require f }
