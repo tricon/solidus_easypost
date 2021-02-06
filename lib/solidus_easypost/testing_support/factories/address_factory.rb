@@ -6,6 +6,5 @@ FactoryBot.modify do
     city { 'Manville' }
     association(:state, name: 'New Jersey', abbr: 'NJ')
     zipcode { '08835' }
-    lastname { 'Doe' }
   end
 end
