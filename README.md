@@ -1,7 +1,6 @@
 # solidus_easypost
 
-[![CircleCI](https://circleci.com/gh/solidusio-contrib/solidus_easypost.svg?style=shield)](https://circleci.com/gh/solidusio-contrib/solidus_easypost)
-[![codecov](https://codecov.io/gh/solidusio-contrib/solidus_easypost/branch/master/graph/badge.svg)](https://codecov.io/gh/solidusio-contrib/solidus_easypost)
+
 
 This is an extension to integrate EasyPost with Solidus.
 
@@ -44,7 +43,7 @@ for all shipments. The cheapest rate will be selected by default, but your users
 change the selected rate in the `delivery` step of the checkout process, if they wish.
 
 Admins will also be able to download the postage label associated to each EasyPost shipment after
-a shipment has been bought. 
+a shipment has been bought.
 
 ### Buying labels upon shipping
 
@@ -69,6 +68,12 @@ enabled before they are visible and selectable in the storefront during the chec
 
 If you want to override this logic, you can provide your own `shipping_method_selector_class`.
 
+### Customizing parcel dimension calculator
+
+By default, the extension will use the default weight dimension calculator to calculate the parcel dimension that is passed to EasyPost. The default calculator uses the variants weight to calculate the parcel weight without taking into consideration the other package properties like `width`, `height`, and `lenght`.
+
+If you want to override this logic, you can provide your own `parcel_dimension_calculator_class`.
+
 ### Tracking cartons via EasyPost
 
 You can optionally track packages via EasyPost's [Trackers API](https://www.easypost.com/docs/api#trackers).
@@ -86,7 +91,7 @@ retrieve the tracker in the future.
 > in `spree_cartons` contains a valid tracking number, and that the `carrier` column in
 > `spree_shipping_methods` contains a carrier name [that EasyPost will recognize](https://www.easypost.com/docs/api#carrier-tracking-strings).
 > The extension already generates compliant shipping methods by default, but you may need to change
-> the data on your custom shipping methods if you want to track them. 
+> the data on your custom shipping methods if you want to track them.
 
 You can also enable automatic tracking for all created cartons:
 
@@ -108,9 +113,7 @@ extension. When the extension is available, a webhook will be automatically conf
 configuration:
 
 - *Environment:* `Production` or `Test`
-- *Webhook URL:* `https://your-store.com/webhooks/easypost_trackers?token=[YOUR_TOKEN]` (replace
-  `[YOUR_TOKEN]` with the API key of an admin user or, better yet, a 
-  [webhook user](https://github.com/solidusio-contrib/solidus_webhooks#restricting-permissions)
+- *Webhook URL:* `https://your-store.com/webhooks/easypost_trackers?token=[YOUR_TOKEN]` (replace`[YOUR_TOKEN]` with the API key of an admin user or, better yet, a[webhook user](https://github.com/solidusio-contrib/solidus_webhooks#restricting-permissions)
 
 Now, when Solidus gets a tracking update from EasyPost, a `solidus_easypost.tracker.updated` event
 will be fired. The event's payload will contain the `:carton` and `:payload` keys, with the
@@ -155,7 +158,7 @@ $ bin/rails server
 => Rails 6.0.2.1 application starting in development
 * Listening on tcp://127.0.0.1:3000
 Use Ctrl-C to stop
-```  
+```
 
 ### Updating the changelog
 
