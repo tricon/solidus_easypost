@@ -2,6 +2,6 @@
 
 if defined?(SolidusWebhooks)
   SolidusWebhooks.config.register_webhook_handler :easypost_trackers, ->(payload) do
-    SolidusEasypost::TrackerWebhookHandler.call(payload)
+    SolidusEasypost.configuration.webhook_handler_class.call(payload)
   end
 end
