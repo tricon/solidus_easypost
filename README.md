@@ -119,6 +119,12 @@ Now, when Solidus gets a tracking update from EasyPost, a `solidus_easypost.trac
 will be fired. The event's payload will contain the `:carton` and `:payload` keys, with the
 `Spree::Carton` object associated to the tracker and the EasyPost payload respectively.
 
+### Customizing the tracking webhook handler
+
+If you want to override default webhook handler, you can provide your own `webhook_handler_class` in your configuration.
+
+Note that, if you override the webhook handler, no events will be fired out of the box.
+
 ## Development
 
 ### Testing the extension
