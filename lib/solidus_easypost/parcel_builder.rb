@@ -4,16 +4,23 @@ module SolidusEasypost
   class ParcelBuilder
     class << self
       def from_package(package)
-        total_weight = package.contents.sum do |item|
-          item.quantity * item.variant.weight
-        end
+        parcel_dimension = SolidusEasypost
+                           .configuration
+                           .parcel_dimension_calculator_class
+                           .new
+                           .compute(package)
 
-        ::EasyPost::Parcel.create weight: total_weight
+        ::EasyPost::Parcel.create(parcel_dimension.to_h)
       end
 
       def from_return_authorization(return_authorization)
-        total_weight = return_authorization.inventory_units.joins(:variant).sum(:weight)
-        ::EasyPost::Parcel.create weight: total_weight
+        parcel_dimension = SolidusEasypost
+                           .configuration
+                           .parcel_dimension_calculator_class
+                           .new
+                           .compute(return_authorization)
+
+        ::EasyPost::Parcel.create(parcel_dimension.to_h)
       end
     end
   end
