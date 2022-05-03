@@ -18,7 +18,7 @@ RSpec.describe Spree::Carton do
 
         carton = create(:carton)
 
-        expect(carton.easy_post_tracker_id).to eq(nil)
+        expect(carton.easy_post_tracker_id).to be_nil
       end
     end
   end
