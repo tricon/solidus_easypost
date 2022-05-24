@@ -13,7 +13,7 @@ module Spree
           return
         end
 
-        redirect_to @shipment.easypost_postage_label_url
+        redirect_to @shipment.easypost_postage_label_url, allow_other_host: true
       end
     end
   end
