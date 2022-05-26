@@ -4,8 +4,8 @@ RSpec.describe SolidusEasypost::ParcelBuilder do
   describe '.from_package', vcr: { cassette_name: 'parcel_builder/from_package' } do
     let(:shipment) { create(:shipment) }
     let(:package) { shipment.to_package }
-    let(:parcel_dimension_calculator) { instance_spy('SolidusEasypost.configuration.parcel_dimension_calculator_class') }
-    let(:parcel_dimension) { instance_spy('SolidusEasypost::ParcelDimension') }
+    let(:parcel_dimension_calculator) { instance_spy(SolidusEasypost.configuration.parcel_dimension_calculator_class) }
+    let(:parcel_dimension) { instance_spy(SolidusEasypost::ParcelDimension) }
 
     before do
       allow(SolidusEasypost.configuration.parcel_dimension_calculator_class)
@@ -59,8 +59,8 @@ RSpec.describe SolidusEasypost::ParcelBuilder do
   describe '.from_return_authorization', vcr: { cassette_name: 'parcel_builder/from_return_authorization' } do
     let(:return_item) { create(:return_item) }
     let(:return_authorization) { return_item.return_authorization }
-    let(:parcel_dimension_calculator) { instance_spy('SolidusEasypost.configuration.parcel_dimension_calculator_class') }
-    let(:parcel_dimension) { instance_spy('SolidusEasypost::ParcelDimension') }
+    let(:parcel_dimension_calculator) { instance_spy(SolidusEasypost.configuration.parcel_dimension_calculator_class) }
+    let(:parcel_dimension) { instance_spy(SolidusEasypost::ParcelDimension) }
 
     before do
       allow(SolidusEasypost.configuration.parcel_dimension_calculator_class)

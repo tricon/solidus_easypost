@@ -36,7 +36,7 @@ RSpec.describe SolidusEasypost::ParcelDimension do
   end
 
   describe '#to_h' do
-    subject(:instance_hash) { described_class.new(params).to_h }
+    subject(:instance_hash) { described_class.new(**params).to_h }
 
     context 'when the params contains zero values' do
       let(:params) do
